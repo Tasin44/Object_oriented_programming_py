@@ -6,10 +6,10 @@
 #Using normal function to achieve getters and setters behaviour
 #1st approach(single _protected attribute )
 
-One-line summary
+#One-line summary
 
-Constructor (__init__) sets initial value.
-Setter controls future changes + validation.
+#Constructor (__init__) sets initial value.
+#Setter controls future changes + validation.
 
 
 class Geek: 
@@ -54,7 +54,7 @@ obj=Person()
 obj.set_name("Tasin")
 print(obj.get_name())
 
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 class Person:
   def __init__(self,name="kamal",age=24):
     self._nam=name 
@@ -73,7 +73,7 @@ ob.set_nameage("roy",-6)
 print(ob.get_name())
 print(ob.get_age())
 
-====================================================================================================================================================================================================================================
+#====================================================================================================================================================================================================================================
 #2nd approach(double __private attribute )
 '''
 ✅ Getter and Setter Methods
@@ -119,7 +119,7 @@ You can technically access private attributes using name mangling:
 
 This breaks encapsulation and should be avoided unless you're debugging or working in special cases.
 '''
-====================================================================================================================================================================================================================================
+#====================================================================================================================================================================================================================================
 
 #🚨🚨❓❓I can directly pass age 23 and then I can retrive by get_age, then why I need to use set_age() for private attribute?
 
@@ -142,14 +142,14 @@ Right now, nothing stops invalid data.
 
 Someone can do:
 '''
-		obj = Student(-50)
-		print(obj.get_age())
+#		obj = Student(-50)
+#		print(obj.get_age())
 
-Output → -50 ❌ (Invalid age)
+#Output → -50 ❌ (Invalid age)
 
-Or:
+#Or:
 
-		obj = Student("Hello")
+#		obj = Student("Hello")
 '''
 Now age becomes string 😐
 
@@ -224,7 +224,7 @@ Then constructor alone is fine ✅
 '''
 
 
-====================================================================================================================================================================================================================================
+#====================================================================================================================================================================================================================================
 '''
 @property decorator
 @property is a built-in Python decorator.

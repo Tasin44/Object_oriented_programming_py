@@ -1,6 +1,6 @@
-                                                '''
+#                                                '''
                                                 #Question:find out the execution time of a function using a decorator.
-                                                '''
+#                                                '''
 # importing libraries
 import time
 import math
@@ -110,7 +110,7 @@ factorial(10)
 Total time taken in :  factorial 2.002134084701538
 '''
 
-===============================================================================================================================================
+#===============================================================================================================================================
 '''
 
 If we want to do it without decorator:

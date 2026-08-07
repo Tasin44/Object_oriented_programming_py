@@ -2,11 +2,11 @@
 The __add__method can add only two object
 What if we try to do:
 '''
-    def __add__(self, other,third):
-            total_age = self.age + other.age+third.age
-            total_weight = self.weight + other.weight+third.weight
-            joint_name=self.name+other.name+third.name
-            return total_age, total_weight ,joint_name
+#    def __add__(self, other,third):
+#            total_age = self.age + other.age+third.age
+#            total_weight = self.weight + other.weight+third.weight
+#            joint_name=self.name+other.name+third.name
+#            return total_age, total_weight ,joint_name
 
 obj1 = Person("Alim", 25, 90)
 obj2 = Person("karim", 30, 60)
@@ -145,10 +145,10 @@ result = temp + obj3
 # Chaining additions
 #If we try to do like:
 '''
-       result = obj1 + obj2 + obj3 + obj4 + 7  # This will raise a TypeError
+#       result = obj1 + obj2 + obj3 + obj4 + 7  # This will raise a TypeError
 
 # Printing the result
-       print(result)
+#       print(result)
 '''
 If you try to add a Person object to an integer like 7 
 (i.e., result = obj1 + obj2 + obj3 + obj4 + 7), 

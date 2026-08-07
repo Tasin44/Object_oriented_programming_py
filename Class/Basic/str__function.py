@@ -1,5 +1,5 @@
 
-🚨🚨__str__ must return a string, not print it. So never used print in str.🚨🚨
+#🚨🚨__str__ must return a string, not print it. So never used print in str.🚨🚨
 '''        
 The __str__() function controls what should be returned when the class object is represented as a string.
 
@@ -28,28 +28,28 @@ class Person:
 p1 = Person("John", 36)
 print(p1)
 
-'''
-Error:❌❌
-C:\Users\User\Desktop\oop training\Mypractice>py my1.py
-Hello my name is John
-Traceback (most recent call last):
-  File "C:\Users\User\Desktop\oop training\Mypractice\my1.py", line 30, in <module>
-    print(p1)
-    ~~~~~^^^^
-TypeError: __str__ returned non-string (type NoneType)
+#'''
+#Error:❌❌
+#C:\Users\User\Desktop\oop training\Mypractice>py my1.py
+#Hello my name is John
+#Traceback (most recent call last):
+#  File "C:\Users\User\Desktop\oop training\Mypractice\my1.py", line 30, in <module>
+#    print(p1)
+#    ~~~~~^^^^
+#TypeError: __str__ returned non-string (type NoneType)
 
 
 
-Reason:
+#Reason:
 
-Your __str__ method uses print() instead of return.
+#Your __str__ method uses print() instead of return.
 
-What happens:
+#What happens:
 
-     -print(p1) calls __str__ method
-     -Your method prints "Hello my name is John" - this works
-    -Then __str__ returns None (because no return statement)
-    - print(p1) tries to print the returned None → TypeError
+#     -print(p1) calls __str__ method
+#     -Your method prints "Hello my name is John" - this works
+#    -Then __str__ returns None (because no return statement)
+#    - print(p1) tries to print the returned None → TypeError
 '''
 
 #Soln:
@@ -58,14 +58,14 @@ def __str__(self):
     return "Hello my name is " + self.name  # return, not print
 
 #==============================================================================================================================================================================
-Never use ',' in the return of str(example bottom) if it's multi line return statement 
-but if it's a single line return statement, then we can use 
+#Never use ',' in the return of str(example bottom) if it's multi line return statement 
+#but if it's a single line return statement, then we can use 
 
 ex1: we can use coma here 
     def __str__(self):
         return f"Department: {self.name}, Classes: {[cls.name for cls in self.classes]}, Professors: {[prof.name for prof in self.professors]}"
       
-ex2:we can't use coma here
+#ex2:we can't use coma here
     def __str__(self):
         return (f"Department: {self.name} \n"
         f"Classes: {[cls.name for cls in self.classes]}\n"
@@ -118,7 +118,7 @@ print(p1.print())
 
 #==============================================================================================================================================================================
 #imporant
-🚨🚨__str__ must return a string, not Tuple.🚨🚨
+#🚨🚨__str__ must return a string, not Tuple.🚨🚨
 
 class Department:
     def __init__(self,name):
@@ -143,18 +143,18 @@ class Department:
         f"Professors:{professor_str}")
 
 '''
-if we use  ','  in the return() to separate f"Department:{self.name}\n"  f"Classes :{classes_str}\n"
-it'll return a tuple
-The commas make it equivalent to:
-return (string1, string2, string3)
+#if we use  ','  in the return() to separate f"Department:{self.name}\n"  f"Classes :{classes_str}\n"
+#it'll return a tuple
+#The commas make it equivalent to:
+#return (string1, string2, string3)
 
-This is not valid for the __str__ method because it must return a single string, not a tuple.
-When defining the __str__ method, you should never use commas to separate strings in the return statement because 
-it creates a tuple instead of a single string. The __str__ method is specifically required to return a single string, not any other type of object like a tuple.
+#This is not valid for the __str__ method because it must return a single string, not a tuple.
+#When defining the __str__ method, you should never use commas to separate strings in the return statement because 
+#it creates a tuple instead of a single string. The __str__ method is specifically required to return a single string, not any other type of object like a tuple.
 
 
 
-❌ Incorrect (Tuple Return):
+#❌ Incorrect (Tuple Return):
 def __str__(self):
     return (
         f"Department: {self.name}\n", 
@@ -162,31 +162,31 @@ def __str__(self):
         f"Professors: {professors_str}"
     )
     
-The commas create a tuple:
+#The commas create a tuple:
 (
     "string1",
     "string2",
     "string3"
 )
-This will raise a TypeError because __str__ must return a string, not a tuple.
+#This will raise a TypeError because __str__ must return a string, not a tuple.
 
-When is it Okay to Use Commas?
-Using commas is fine outside of __str__ if you intend to return a tuple or use them for other purposes. For example:
+#When is it Okay to Use Commas?
+#Using commas is fine outside of __str__ if you intend to return a tuple or use them for other purposes. For example:
 
-return "Hello", "World"  # Returns a tuple ('Hello', 'World')
-But for __str__, always ensure the return type is a single string.
+#return "Hello", "World"  # Returns a tuple ('Hello', 'World')
+#But for __str__, always ensure the return type is a single string.
 '''
 
 '''
-Question: 
+#Question: 
 
-why I'm putting [ ] here? I'm talking about the [ before f" and at the last ] before )?
-Actually they are optional, without them code also works
--Creates complete list first, then joins
--Creates items one by one (memory efficient)
--Works fine - brackets are optional here
+#why I'm putting [ ] here? I'm talking about the [ before f" and at the last ] before )?
+#Actually they are optional, without them code also works
+#-Creates complete list first, then joins
+#-Creates items one by one (memory efficient)
+#-Works fine - brackets are optional here
 
-'''
+#'''
 
 deptobj=Department("CSE")
 # deptobj.name=

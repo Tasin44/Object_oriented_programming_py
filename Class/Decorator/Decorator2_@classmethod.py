@@ -93,124 +93,124 @@ obj1=Company("RK",102)
 Company.find_comp(102)
 
 
-❌❌Error
-Traceback (most recent call last):
-  File "C:\Users\tasin44\OneDrive\Desktop\Libraries\my1.py", line 52, in <module>
-    Company.find_comp(102)
-    ~~~~~~~~~~~~~~~~~^^^^^
-TypeError: Company.find_comp() missing 1 required positional argument: 'id'
+#❌❌Error
+#Traceback (most recent call last):
+#  File "C:\Users\tasin44\OneDrive\Desktop\Libraries\my1.py", line 52, in <module>
+#    Company.find_comp(102)
+#    ~~~~~~~~~~~~~~~~~^^^^^
+#TypeError: Company.find_comp() missing 1 required positional argument: 'id'
 
 ##------------Why:----------------------
-Now you call
-    Company.find_comp(102)
+#Now you call
+#    Company.find_comp(102)
 
-Python sees this method definition:
+#Python sees this method definition:
 
-    def find_comp(self, id):
+#    def find_comp(self, id):
 
-It expects 2 arguments.
+#It expects 2 arguments.
 
-    self
-    id
+#    self
+#    id
 
-But you only gave one:
+#But you only gave one:
 
-    Company.find_comp(102)
+#    Company.find_comp(102)
 
-Python assigns
+#Python assigns
 
-    self = 102
+#    self = 102
 
-Now it still needs
+#Now it still needs
 
-    id = ?
+#    id = ?
 
-Since nothing was supplied, Python raises
+#Since nothing was supplied, Python raises
 
-    TypeError: Company.find_comp() missing 1 required positional argument: 'id'
+#    TypeError: Company.find_comp() missing 1 required positional argument: 'id'
 
-It is equivalent to writing
+#It is equivalent to writing
 
-    Company.find_comp(self=102)
+#    Company.find_comp(self=102)
 
-and forgetting id.
+#and forgetting id.
 
 
 
 ##--------With @classmethod----------------
 
-Now your code becomes
+#Now your code becomes
 
-    @classmethod
-    def find_comp(self, id):
+#    @classmethod
+#    def find_comp(self, id):
 
 
-When you do
+#When you do
 
-    Company.find_comp(102)
+#    Company.find_comp(102)
 
-Python automatically converts it into
+#Python automatically converts it into
 
-    Company.find_comp(Company, 102)
+#    Company.find_comp(Company, 102)
 
 So
 
-    self = Company
-    id = 102
+#    self = Company
+#    id = 102
 
-Now self.all_employee works because self refers to the class itself.
+#Now self.all_employee works because self refers to the class itself.
 
 
 
 ##-----------Visual comparison between instance method and class method:--------------------------
 
-Instance Method
-    def find_comp(self, id):
+#Instance Method
+#    def find_comp(self, id):
 
-Call:
+#Call:
 
-    obj1.find_comp(102)
+#    obj1.find_comp(102)
 
-Python actually does
+#Python actually does
 
-    Company.find_comp(obj1, 102)
+#    Company.find_comp(obj1, 102)
 
-    self -> obj1
-    id   -> 102
+#    self -> obj1
+#    id   -> 102
 
-Class Method
-    @classmethod
-    def find_comp(cls, id):
+#Class Method
+#    @classmethod
+#    def find_comp(cls, id):
 
-Call:
+#Call:
 
-    Company.find_comp(102)
+#    Company.find_comp(102)
 
-Python actually does
+#Python actually does
 
-    Company.find_comp(Company, 102)
-    cls -> Company
-    id  -> 102
+#    Company.find_comp(Company, 102)
+#    cls -> Company
+#    id  -> 102
 
 #------------Without @classmethod
-    def find_comp(self, id):
+#    def find_comp(self, id):
 
-Call:
+#Call:
 
-    Company.find_comp(102)
+#    Company.find_comp(102)
 
-Python actually does
+#Python actually does
 
 Company.find_comp(102)
 
-which binds
+#which binds
 
-self -> 102
-id   -> MISSING ❌
+#self -> 102
+#id   -> MISSING ❌
 
-So you get
+#So you get
 
-TypeError: Company.find_comp() missing 1 required positional argument: 'id'
+#TypeError: Company.find_comp() missing 1 required positional argument: 'id'
 # =================================================================================================================================================================================
 
 # Example -2 

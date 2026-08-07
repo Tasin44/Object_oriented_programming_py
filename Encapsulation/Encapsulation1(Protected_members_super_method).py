@@ -13,16 +13,17 @@ This protects the internal state of an object by:
 
 In Python, this is done using access modifiers:
 
-    Public: accessible everywhere.
-
-    Protected (_): should be accessed only within the class or subclass.
-
-    Private (__): hidden from outside access.
+    -Public: accessible everywhere.
+    -Protected (_): should be accessed only within the class or subclass.
+    -Private (__): hidden from outside access.Name-mangled to discourage access from outside the class. Intended for use only within that class.
     
+Note: Python doesn't have truly private attributes. __name can still be accessed using name mangling (e.g., _ClassName__name).
+
 
 Protected Members:
 Protected members are those that are intended to be accessed only within the class 
 and its subclasses.
+
 In Python, protected members are defined by prefixing the member 
 name with a single underscore (_).
 
@@ -60,7 +61,7 @@ Subclass doesn't define its own __init__, so it automatically uses the __init__ 
 That means _age is still initialized properly.
 ✅ You can access _age in the subclass because it's inherited.
 '''
-========================================================================================================================================================================
+#========================================================================================================================================================================
 
 
 #EXAMPLE-2(Protected Attribute access with the classname )
@@ -112,7 +113,7 @@ class Subclass(Protected):
         self.name = "Tasin"
 
 
-========================================================================================================================================================================
+#========================================================================================================================================================================
 
 # Example -3 (Private Attribute) 
 
@@ -161,6 +162,151 @@ Connection Between Encapsulation & super()
     super() accesses inherited methods while respecting encapsulation (cannot bypass private members).
 '''
 
+'''
+super() মূলত attribute access করার জন্য না, বরং parent class-এর method call করার জন্য বেশি ব্যবহৃত হয়।
+
+super() আসলে কী?
+
+"Parent class-এর method call করো, কিন্তু parent class-এর নাম লিখো না।"
+'''
+
+class Parent: 
+    def greet(self):
+        print("Hello from Parent")
+
+class Child(Parent):
+    def greet(self):
+        print("Hello From Child")
+        super().greet()
+
+obj=Child()
+obj.greet()
+
+# Output:
+
+# Hello from Child
+# Hello from Parent
+
+# এখানে super() parent-এর greet() method call করেছে।
+
+#===============================================================================
+
+'''
+__init__()-এ কেন super() ব্যবহার করি?
+
+এটাই সবচেয়ে common use case।
+'''
+
+class Parent:
+    def __init__(self):
+        self.name = "Tasin"
+
+class Child(Parent):
+    def __init__(self):
+        super().__init__()   # Parent-এর __init__ চালায়
+        self.age = 22
+
+obj = Child()
+print(obj.name)
+print(obj.age)
+
+# যদি super().__init__() না লিখো, তাহলে name তৈরি হবে না।
+
+# তাহলে super() কি attribute access করে?
+
+# Indirectly, yes.
+
+class Parent:
+    def __init__(self):
+        self._x = 10
+
+class Child(Parent):
+    def __init__(self):
+        super().__init__()
+        print(self._x)
+
+
+'''
+এখানে super() _x access করেনি।
+
+super().__init__() শুধু parent-এর constructor চালিয়েছে।
+
+তারপর _x object-এর মধ্যে তৈরি হয়েছে, তাই self._x দিয়ে access করা যাচ্ছে।
+
+
+
+
+তাহলে super()._x কেন কাজ করে না?
+
+কারণ _x একটা instance attribute, method না।
+
+super()._x   # ❌
+
+এভাবে access করা উচিত না।
+
+ঠিক উপায়:
+self._x
+'''
+
+#Private member কেন access করা যায় না?
+
+class Parent:
+    def __private(self):
+        print("Private")
+
+'''
+Python এটা internally পরিবর্তন করে
+
+_Parent__private
+
+এটাকেই Name Mangling বলে।
+
+তাই
+'''
+
+#❌
+##super().__private()
+
+
+# এটা করলে,Python _Child__private খুঁজতে যায়, _Parent__private না। কিন্তু প্রাইভেট ত একচুয়েলি পেরেন্টে আছে চাইল্ডে না , তাই Error হয়।❌
+
+
+#তাহলে Name Mangling দিয়ে access করা খারাপ কেন?
+obj._Parent__private_method()
+
+
+'''
+এটা technically কাজ করে।
+
+কিন্তু এটা Python-এর convention ভাঙে।
+
+Class designer বলেছেন,
+
+"এই method শুধুমাত্র class-এর ভিতরে ব্যবহার হবে।"
+
+তুমি জোর করে access করছো।
+
+এটাকে encapsulation break বলা হয়।
+
+এটা অনেকটা এমন:
+
+একটা বাড়ির "Staff Only" দরজা আছে। চাবি দিয়ে ঢোকা সম্ভব, কিন্তু সেটা visitor-এর জন্য intended নয়।
+
+তাই করা possible, কিন্তু recommended নয়।
+'''
+
+'''
+super() মনে রাখার সহজ নিয়ম
+✅ Parent-এর __init__() call করতে → super().__init__()
+✅ Parent-এর public/protected method call করতে → super().method()
+❌ Parent-এর private method call করা যায় না → name mangling ছাড়া।
+❌ super() attribute access করার জন্য তৈরি হয়নি; constructor বা method call-এর মাধ্যমে attribute তৈরি হয়, তারপর self.attribute দিয়ে ব্যবহার করা হয়।
+
+এক লাইনে:
+
+super() = "Parent class-এর implementation reuse করার উপায়", attribute access করার জন্য নয়।
+'''
+#=============================================================================
 class BaseClass:
     def __init__(self):
         self._protected_attribute = 42  # Protected attribute
@@ -187,7 +333,7 @@ In the above example:
 
 
 
-========================================================================================================================================================================
+#========================================================================================================================================================================
 
 
 # Example 2 : Super()

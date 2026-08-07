@@ -43,7 +43,7 @@ Each call to add_15(y) just adds 15 to whatever you pass in as y.
 There’s no state being stored inside the function—only the variable x = 15 is "remembered", not the previous result.
 
 '''
-================================================================================================================================================================
+#================================================================================================================================================================
 
 def create_counter_adder(x):
     total = 0

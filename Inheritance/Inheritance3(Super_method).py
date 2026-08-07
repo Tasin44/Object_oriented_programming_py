@@ -82,9 +82,9 @@ class Inventory:
     def __init__(self, **initial_items):
         # initial_items: name=(price, qty) pairs passed as kwargs
         self.items = {}
-       '''
-       The first line initializes an empty dictionary. The loop then populates it with any items passed during object creation. This allows you to create an inventory with initial items like:
-       '''
+#       '''
+#       The first line initializes an empty dictionary. The loop then populates it with any items passed during object creation. This allows you to create an inventory with initial items like:
+#       '''
        
         for name, (price, qty) in initial_items.items():
             self.items[name] = {"price": price, "qty": qty}

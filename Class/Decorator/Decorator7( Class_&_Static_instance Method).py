@@ -1,10 +1,10 @@
-If data belongs to an object → NOT static
-If data belongs to the class as a whole → static
+#If data belongs to an object → NOT static
+#If data belongs to the class as a whole → static
 
-static data holo cls level data, object level data na means kono specific object er data na
+#static data holo cls level data, object level data na means kono specific object er data na
 #=================================================================================================================================================================================
 # Static variable and static method:
-                                                                                  Static Variable (Class Variable)
+#                                                                                  Static Variable (Class Variable)
 
 # A variable that is shared by all objects of the class. It belongs to the class, not to individual objects.
 
@@ -24,7 +24,7 @@ Hospital.hospital_name = "City Hospital"
 print(h1.hospital_name)  # City Hospital
 print(h2.hospital_name)  # City Hospital
 
-                                                                                    Static Method
+#                                                                                    Static Method
 
 # A method that doesn't need self or cls. It's used for utility/helper functions related to the class.
 
@@ -43,20 +43,20 @@ print(Hospital.is_valid_id(-5))   # False
 
 
 #==================================================================================================================================================================================
-                                                                                                            '''
-                                                                                        Final Exmaple of class,instance and static method 
-                                                                                                            '''
+#                                                                                                            '''
+#                                                                                        Final Exmaple of class,instance and static method 
+#                                                                                                            '''
 # Here’s a very simple, real-life example using a BankAccount class so you clearly understand:
 # ✅ Instance Method
 # ✅ Class Method
 # ✅ Static Method
 
-🎯 Easy Way to Remember
--If it needs object data → Instance method
--If it needs class-level data → Class method
--If it needs no class or object data → Static method
+#🎯 Easy Way to Remember
+#-If it needs object data → Instance method
+#-If it needs class-level data → Class method
+#-If it needs no class or object data → Static method
 
-code : 
+#code : 
 
 class BankAccount:
     # 👉 Class variable (shared by all accounts)
@@ -128,11 +128,11 @@ print(BankAccount.is_valid_amount(100))
 # Output: True
 
 
-| Type            | Uses                   | Access              |
-| --------------- | ---------------------- | ------------------- |
-| Instance Method | Works with object data | `self`              |
-| Class Method    | Works with class data  | `cls`               |
-| Static Method   | Just helper function   | No `self`, no `cls` |
+#| Type            | Uses                   | Access              |
+#| --------------- | ---------------------- | ------------------- |
+#| Instance Method | Works with object data | `self`              |
+#| Class Method    | Works with class data  | `cls`               |
+#| Static Method   | Just helper function   | No `self`, no `cls` |
 
 
 
@@ -165,7 +165,7 @@ Decorator	            First Arg	                Accesses self or cls?	          
 @classmethod	        cls	                        ✅ Class-level access	            Factory methods, alternative constructors
 Instance method	        self	                    ✅ Instance-level access	        Regular object behavior
 '''
-========================================================================================================================================================
+#========================================================================================================================================================
 '''
                                                         classmethod and staticmethod
                                                     Static method(explained at the bottom)
@@ -211,7 +211,7 @@ print(Geeks.welcome_message())
 
 
 
-========================================================================================================================================================
+#========================================================================================================================================================
 
 # Example 
 #Approach -1 (using instance method)
@@ -244,7 +244,7 @@ emp2.get_emp_details()
 
 
 
-========================================================================================================================================================
+#========================================================================================================================================================
 
 #Approach : 2 - using class method
 
@@ -318,7 +318,7 @@ class Test:
 
 '''Now self.value becomes an instance variable, hiding the class variable.'''
 
-========================================================================================================================================================
+#========================================================================================================================================================
 
 #STEP:3 Use @classmethod to create an alternative constructor
 
@@ -407,10 +407,10 @@ Return value: Always return cls(...) to create a new instance
 Use cases: When you need to create objects from different data formats (like strings, dictionaries, files, etc.)
 '''
 
-========================================================================================================================================================
+#========================================================================================================================================================
 
 
-STATIC METHOD
+#STATIC METHOD
 
 '''
 No implicit arguments:
@@ -504,4 +504,4 @@ emp2.get_emp_details()
 # Accessing static method
 Employee.number_of_employee()
 
-=================================================================================================================================================================================================\
+#=================================================================================================================================================================================================\

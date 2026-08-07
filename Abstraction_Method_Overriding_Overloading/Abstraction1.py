@@ -6,6 +6,14 @@ allows the programmer to focus on interactions at a high level.
 '''
 # It means hiding complex things behind a procedure so that things look simiple 
 
+'''
+❓Does method overriding and abstract method means same?
+
+Method overriding: A child class provides its own implementation of a method that already exists in the parent class.
+@abstractmethod: It is not method overriding. It is a declaration that says, "Every concrete child class must implement this method.
+'''
+
+
 from abc import ABC, abstractmethod
 
 # Define an abstract base class
