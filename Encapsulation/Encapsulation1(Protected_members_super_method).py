@@ -214,7 +214,7 @@ print(obj.age)
 
 # তাহলে super() কি attribute access করে?
 
-# Indirectly, yes.
+# Indirectly, yes. But directly super() attribute access kore na , Like below
 
 class Parent:
     def __init__(self):
