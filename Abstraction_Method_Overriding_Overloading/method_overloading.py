@@ -58,3 +58,22 @@ Uses inheritance	                              Doesn't require inheritance
 Supported in Python	                              Not directly supported in Python
 Example: Dog.sound() overrides Animal.sound()	  Simulated using default arguments or *args
 '''
+
+'''
+Why sum(*args) won't work?
+
+sum syntax is sum(iterable, start=0).
+
+Iterable means something we can loop over: list, tuple, set, dict (iterates over keys), string, etc.
+
+If args = (2, 5):
+
+sum(*args) → sum(2, 5)
+Here, 2 is treated as the iterable, but int is not iterable → error.
+
+sum(args) → sum((2, 5))
+Here, (2, 5) is the iterable → 2 + 5 = 7.
+
+The start value is added to the final sum.
+For example: sum((2, 5), 10) → 10 + 2 + 5 = 17.
+'''
