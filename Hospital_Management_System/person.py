@@ -48,6 +48,13 @@ class Person(ABC):
     # --- Abstract Method (MUST be overridden by every child class) ---
     @abstractmethod
     def display_role(self) -> str:
+        #❓why using str instead of def display_role(self):?
+        '''
+        The -> str is also Type Hinting. It indicates the expected return type of the function. 
+        It means "this function is expected to return a string". 
+        It doesn't force Python to return a string, 
+        but it helps catch bugs and makes the code self-documenting.
+        '''
         """
         OOP: Abstraction + Polymorphism
         Forces every child class to declare its own role.
@@ -71,3 +78,10 @@ class Person(ABC):
         Returns a clean, readable representation of this person.
         """
         return f"[{self.__class__.__name__}] {self.name} (ID: {self.person_id})"
+        #❓what does __class__ meaning here 
+        '''
+        self.__class__ refers to the class of the current object. 
+        .__name__ gets the name of that class as a string. 
+        If self is a Doctor object, self.__class__.__name__ becomes the string "Doctor". 
+        This makes your __str__ method dynamic so it works correctly for any child class (Doctor, Patient, etc.) without needing to be rewritten.
+        '''

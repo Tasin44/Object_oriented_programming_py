@@ -17,7 +17,7 @@ SOLID PRINCIPLE APPLIED HERE: (D) Dependency Inversion Principle
     #         self.__medical_history = ""   # Just a string -- how do you add to it cleanly?
     #         self.__symptoms = ""          # Becomes a messy concatenation mess
     #
-    # [-] DISADVANTAGE: If you want to add structured data (visit dates, specific symptoms),
+    # [-] DISADVANTAGE: If you want to add structured data (visit dates, specific symptoms), 
     #    you must completely refactor how __medical_history is stored.
     #    The Patient class has to change every time medical record structure changes.
 
@@ -104,6 +104,14 @@ class Patient(Person):
             print(f"[DENY] ACCESS DENIED: Only Receptionist can update billing. You are '{requester_role}'.")
 
     def view_bill(self) -> None:
+        #❓Do u think it should be named as get_bill? as I'm accessing private method for read purpose? or it is like I can use get or set anything to access private attribute
+        '''
+        You could name it get_bill(), which is a common naming convention for a "getter". 
+        However, a getter usually returns the value (return self.__billing_amount), 
+        whereas your view_bill() method seems to just print() the bill directly. 
+        Naming it view_bill is actually very appropriate for a method that just prints it out.
+        '''
+
         """
         Patient can view their own bill -- Public Getter for private billing data.
         Patients have READ access to their own billing, but NOT write access.

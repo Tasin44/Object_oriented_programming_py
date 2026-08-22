@@ -63,6 +63,13 @@ class Employee(Person):
 
     def __init__(self, name: str, age: int, gender: str, contact: str,
                  person_id: str, employee_id: str, department: str, salary: float):
+        ##❓is it necessary to use str here, can't I just use (name,department,salary) like this
+        '''
+        No, it is not strictly necessary. 
+        You can just write person_id, employee_id, department, salary. 
+        The : str and : float are Type Hints. 
+        They don't change how the code runs, they just help you and your code editor know what type of data is supposed to be passed in.
+        '''
         """
         Calls Person's __init__ first via super() to initialize shared attributes,
         then adds Employee-specific attributes on top.
@@ -78,6 +85,14 @@ class Employee(Person):
     # OOP: Encapsulation -- Getter
     # --------------------------
     def get_salary(self) -> float:
+        #❓Maybe I'm using here float because I've used salary: float on the init right? if I didn't mention salary: float, I think I can then use here def get_salary(self)
+
+        '''
+        Exactly! -> float is just a type hint saying "this returns a float". 
+        If you removed : float from __init__, you could definitely remove -> float here. 
+        Even if you kept : float in __init__, you don't have to use -> float here. 
+        But it's good practice to keep your type hints consistent!
+        '''
         """
         Public Getter for the private __salary attribute.
         Encapsulation: The salary data is HIDDEN, but we allow CONTROLLED READ access.
@@ -99,7 +114,7 @@ class Employee(Person):
         """
         if requester_role == "Admin":           # Authorization check before modifying
             self.__salary = new_salary          # Only Admin can change private salary
-            print(f"[OK] Salary updated for {self.name}: ${new_salary:,.2f}")
+            print(f"[OK] Salary updated for {self.name}: ${new_salary:,.2f}")#❓what does this line doing - .2f ensures it always shows exactly two decimal places (e.g., .00).
         else:
             # Deny access if the requester is not authorized
             print(f"[DENY] ACCESS DENIED: Only Admin can change salary. You are '{requester_role}'.")

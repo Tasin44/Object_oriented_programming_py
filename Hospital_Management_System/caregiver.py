@@ -105,8 +105,15 @@ class CareGiver(Employee):
         patient.medical_record.add_visit(
             date="Today",
             symptom="Care Note",
-            treatment=note                         # The note is stored as a treatment entry
+            treatment=note                         # The note is stored as a treatment entry#❓ from where this note is coming 
         )
+        '''
+        The note is coming from the arguments of the function itself! 
+        Look at line 95: def add_care_note(self, patient, note: str) -> None:. 
+        When someone calls caregiver.add_care_note(patient, "Ate lunch well"), 
+        that string "Ate lunch well" is passed into the note variable, which you are then using here.
+
+        '''
         print(f"   Care note added: '{note}'")
 
     # --------------------------

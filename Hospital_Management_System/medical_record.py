@@ -39,6 +39,11 @@ class MedicalRecord:
         """
         # Reference back to the owner patient -- used for display purposes
         self.__patient_ref = patient        # [PRIVATE] PRIVATE reference to the patient
+        #❓why I'm using __patient_ref here 
+        '''
+        You are storing a reference to the Patient object so that the MedicalRecord knows whose record it is. 
+        Making it private (__) ensures that outside code cannot randomly swap out the patient that this record belongs to.
+        '''
 
         # Internal data storage using lists of dictionaries
         # Each entry is a dict: {"date": ..., "symptom": ..., "treatment": ...}
@@ -68,7 +73,12 @@ class MedicalRecord:
             "treatment": treatment
         }
         self.__visit_history.append(visit_entry)    # Append the new entry to the private list
-
+        #❓__visit_history is a list, then How I'm appending a dict inside it
+        '''
+            In Python, lists are incredibly flexible—they can contain any type of object, including dictionaries! 
+            You are simply taking a dictionary object (visit_entry) and adding it as an item in the __visit_history list. 
+            The list ends up looking like this: [{visit1_dict}, {visit2_dict}].
+        '''
     # --------------------------
     # OOP: Encapsulation -- Controlled Read Access
     # --------------------------
@@ -105,6 +115,13 @@ class MedicalRecord:
         Returns:
             dict: The latest visit entry, or None if no entries exist.
         """
+
+        ##❓isn't it possible to call here the get_visit_count function to check if entry exist then return self__visit_history[-1]
+        '''
+        Yes, you could absolutely do if self.get_visit_count() > 0:. 
+        However, if self.__visit_history: is a more Pythonic and direct way to check if a list is not empty. 
+        In Python, an empty list evaluates to False, and a list with items evaluates to True.
+        '''
         if self.__visit_history:
             return self.__visit_history[-1]         # Python list: -1 gives last item
         return None                                 # Return None if no history exists

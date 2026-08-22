@@ -102,7 +102,15 @@ class Appointment:
             print(f"   [WARN]  Cannot reschedule -- appointment is '{self.__status}'.")
 
     @property
-    def status(self) -> str:
+    def status(self) -> str:##❓why this method required? I'm using __status on the own class then why it's required
+        '''
+        Because __status is private (it has double underscores), 
+        it cannot be accessed from outside the Appointment class. 
+        By creating a method called status(self) (usually with a @property decorator above it), 
+        you create a controlled, public way for other classes (like Doctor or Receptionist) to 
+        read the status without allowing them to modify the private __status variable directly.
+        '''
+        
         """
         Property to safely read the private __status from outside the class.
         Using @property is a Pythonic way to create a public getter.

@@ -53,20 +53,38 @@ class Department:
     # --------------------------
     # OOP: Encapsulation -- Add to the list via a controlled method
     # --------------------------
-    def add_doctor(self, doctor) -> None:
-        """
-        Adds a Doctor object to this department's roster.
-        We check for duplicates before adding to keep the list clean (KISS principle).
+    # def add_doctor(self, doctor) -> None:
+    #     """
+    #     Adds a Doctor object to this department's roster.
+    #     We check for duplicates before adding to keep the list clean (KISS principle).
 
-        Args:
-            doctor: A Doctor instance to be added to this department.
-        """
-        # Check if doctor is already in the list to avoid duplicates
-        if doctor in self.__doctor_list:
-            print(f"[WARN]  Dr. {doctor.name} is already in {self.department_name} department.")
+    #     Args:
+    #         doctor: A Doctor instance to be added to this department.
+    #     """
+    #     # Check if doctor is already in the list to avoid duplicates
+    #     if doctor in self.__doctor_list:
+    #         print(f"[WARN]  Dr. {doctor.name} is already in {self.department_name} department.")
+    #     else:
+    #         self.__doctor_list.append(doctor)   # Add doctor object to the list
+    #         print(f"[OK] Dr. {doctor.name} added to {self.department_name} department.")
+
+    def add_doctor(self, requester_role: str, doctor) -> None:
+        #❓what does None doing here
+        '''
+        None It's completely optional. You can just remove it.
+        None type hint signifies that this method does not return any value at the end of its execution
+        .It performs an action (adding a doctor), but it doesn't give data back to whoever called it.
+
+
+        '''
+        if requester_role == "Admin":
+            if doctor not in self.__doctor_list:
+                self.__doctor_list.append(doctor)
+                print(f"[OK] Dr. {doctor.name} added to {self.department_name}.")
+            else:
+                print(f"[WARN] Dr. {doctor.name} is already in the department.")
         else:
-            self.__doctor_list.append(doctor)   # Add doctor object to the list
-            print(f"[OK] Dr. {doctor.name} added to {self.department_name} department.")
+            print(f"[DENY] ACCESS DENIED: Only Admin can add doctors to a department. You are '{requester_role}'.")
 
     def remove_doctor(self, doctor) -> None:
         """
@@ -100,3 +118,14 @@ class Department:
     def __str__(self) -> str:
         """Readable string when you print(department_object)."""
         return f"Department: {self.department_name} | Doctors: {self.get_doctor_count()}"
+        #❓So ekhane ami je use kortechi self.get_doctor_count, but on the get_doctor_count(), containing __doctor_list  means all the doctor of all the department, then how can it'll return a specific department dr count 
+        '''
+
+That's the magic of Object-Oriented Programming! 
+Every time you create a new Department object (like "Cardiology" or "Neurology"), 
+it gets its very own separate, independent __doctor_list. 
+So, self.__doctor_list inside the Cardiology object only contains Cardiology doctors. Therefore, self.get_doctor_count() only counts the doctors in that specific department's list.
+
+আসলে def __init__(self, department_name: str): মেথডেই আমি ডিপার্টমেন্ট নেইম আর ডক্টর লিস্ট ডিফাইন করেছি, 
+সো প্রতিবার যখন নিউ ডিপার্টমেন্ট ক্রিয়েট করার জন্য এই ক্লাস টা কল করব, তখন এই ক্লাসের সব মেথড ই একটা স্পেসিফিক ডিপার্টমেন্টের জন্য এভ্রিটাইম কাজ করবে, যে ডিপার্টমেন্ট ক্রিয়েট করব সেটার জন্য কাজ করবে 
+        '''
