@@ -170,6 +170,76 @@ super() আসলে কী?
 "Parent class-এর method call করো, কিন্তু parent class-এর নাম লিখো না।"
 '''
 
+'''
+super()-এর দরকার হয় Parent class-এর method/implementation ব্যবহার করতে, শুধু protected variable access করার জন্য নয়।
+
+সহজ উদাহরণ:
+
+    class Parent:
+        def show(self):
+            print("Parent show")
+
+    class Child(Parent):
+        def show(self):
+            super().show()   # Parent-এর show() call
+            print("Child show")
+
+এখানে:
+
+    self.show()
+
+দিলে → Child-এর show() call হবে।
+
+কিন্তু:
+
+    super().show()
+
+দিলে → Parent-এর show() call হবে।
+
+তাই মনে রাখো:
+
+_age access করার জন্য super() দরকার নেই।
+
+super() মূলত দরকার হয় যখন Child class থেকে Parent class-এর overridden method/constructor-এর functionality ব্যবহার করতে চাও।
+
+যেমন:
+
+    class Child(Parent):
+        def __init__(self):
+            super().__init__()  # Parent-এর initialization চালাবে
+            # তারপর Child-এর নিজের initialization
+
+এটাই super()-এর সবচেয়ে গুরুত্বপূর্ণ ব্যবহার।
+
+
+
+
+--------------------------------------
+Is it necessary to use super to access protected attribute?
+
+হ্যাঁ, super() ছাড়াও protected attribute/method access করা যায়।
+
+class Parent:
+    def __init__(self):
+        self._age = 25
+
+class Child(Parent):
+    def show(self):
+        print(self._age)   # ✅ সরাসরি access
+
+obj = Child()
+obj._age                  # ✅ technically possible
+
+তাই:
+
+🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨self._age → Child-এর ভিতর থেকে সরাসরি ✅
+🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨super()._age → Parent-এর মাধ্যমে access ✅
+
+obj._age → বাইরে থেকেও technically possible ✅, কিন্তু convention অনুযায়ী avoid করা উচিত
+
+Protected (_) Python-এ strict restriction না, এটা মূলত convention।
+'''
+
 class Parent: 
     def greet(self):
         print("Hello from Parent")
