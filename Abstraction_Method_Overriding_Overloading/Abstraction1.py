@@ -33,7 +33,22 @@ class Animal(ABC):
 class Dog(Animal):
     
     def speak(self):
+        # print("Woof!")
         return "Woof!"
+    '''
+    When I'll use print statment on any method instead of return, it'll show None after printing the output, why?
+    Woof!
+    None
+    Runs on four legs
+    Chirp!
+    Flies in the sky
+
+
+    Because 
+    The issue is that your speak() method only prints the output but doesn't return anything. 
+    In Python, if a function doesn't have a return statement, it returns None by default.
+
+    '''
 
     def move(self):
         return "Runs on four legs"
