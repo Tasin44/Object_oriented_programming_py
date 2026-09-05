@@ -33,6 +33,12 @@ That's abstraction.
 You don't care how each payment method pays. You only define the requirement:
 '''
 
+'''
+প্রতিটি কনক্রিট চাইল্ড ক্লাসকে ইনস্ট্যানশিয়েট করার আগে বেইজ ক্লাসের সব অ্যাবস্ট্রাক্ট মেথড ইমপ্লিমেন্ট করতে হবে। 
+অন্যথায়, আপনি যখন সেই ক্লাসের অবজেক্ট তৈরি (instantiate) করতে যাবেন, 
+তখন TypeError পাবেন যেখানে লেখা থাকবে: "Can't instantiate abstract class [ClassName] with abstract methods [method_name]"।
+'''
+
 from abc import ABC, abstractmethod
 
 class Payment(ABC):
