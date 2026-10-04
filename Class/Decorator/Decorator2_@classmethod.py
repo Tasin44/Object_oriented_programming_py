@@ -137,7 +137,7 @@ Company.find_comp(102)
 
 
 
-##--------With @classmethod----------------
+##--------------------------------With @classmethod----------------
 
 #Now your code becomes
 
@@ -153,7 +153,7 @@ Company.find_comp(102)
 
 #    Company.find_comp(Company, 102)
 
-So
+# So
 
 #    self = Company
 #    id = 102
@@ -191,6 +191,8 @@ So
 #    Company.find_comp(Company, 102)
 #    cls -> Company
 #    id  -> 102
+
+
 
 #------------Without @classmethod
 #    def find_comp(self, id):
